@@ -1,33 +1,33 @@
-﻿internal class StringWrapper
+internal class StringWrapper
 {
-    protected string stringValue;
+    protected string _stringValue;
 
     public StringWrapper(string value) 
     {
         if (value != null) 
         { 
-            this.stringValue = value; 
+            _stringValue = value; 
         }
         else
         {
-            this.stringValue = "";
+            _stringValue = " ";
         }
     }
 
     public StringWrapper(StringWrapper anyString)
     {
-        this.stringValue = anyString.stringValue;
+        _stringValue = anyString._stringValue;
     }
 
     public void Exclamation()
     {
-        stringValue = "!!!" + stringValue;
+        _stringValue = "!!!" + _stringValue;
     }
 
     public override string ToString()
     {
-        string s = stringValue;
-        if (s == null)
+        string s = _stringValue;
+        if (_stringValue == " ")
         {
             s = "Пустая строка";
         }
