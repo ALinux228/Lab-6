@@ -1,45 +1,52 @@
-﻿internal class RegisterString : StringWrapper
+internal class RegisterString : StringWrapper
 {
-    private string originalValue;
-    private bool isUpper;
+    private string _originalValue;
+    private bool _isUpper;
 
     public RegisterString(string originalValue, bool isUpper) : base(originalValue)
     {
-        this.originalValue = originalValue;
-        this.isUpper = isUpper;
+        _originalValue = originalValue;
+        _isUpper = isUpper;
+        UpdateStringValue();
     }
 
     public RegisterString(RegisterString anyString) : base(anyString)
     {
-        this.originalValue = anyString.originalValue;
-        this.isUpper = anyString.isUpper;
+        _originalValue = anyString._originalValue;
+        _isUpper = anyString._isUpper;
+        UpdateStringValue();
     }
 
     public void ToUpper()
     {
-        isUpper = true;
+        _isUpper = true;
         UpdateStringValue();
     }
 
     public void ToLower()
     {
-        isUpper = false;
+        _isUpper = false;
         UpdateStringValue();
     }
 
     private void UpdateStringValue()
     {
-        if (isUpper)
-            stringValue = originalValue.ToUpper();
+        if (_isUpper)
+        {
+            _stringValue = _originalValue.ToUpper();
+        }   
         else
-            stringValue = originalValue.ToLower();
+        {
+            _stringValue = _originalValue.ToLower();
+        }       
     }
 
     public override string ToString()
     {
-        string s = "Изначальное значение строки - " + originalValue + ", новое значение строки - " + stringValue;
+        string s = "Изначальное значение строки - " + _originalValue + 
+            ", новое значение строки - " + _stringValue;
 
-        if (isUpper)
+        if (_isUpper)
         {
             s += ", режим - верхний регистр.";
         }
