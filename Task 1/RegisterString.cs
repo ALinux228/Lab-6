@@ -3,14 +3,16 @@ internal class RegisterString : StringWrapper
     private string _originalValue;
     private bool _isUpper;
 
-    public RegisterString(string originalValue, bool isUpper) : base(originalValue)
+    public RegisterString(string originalValue, bool isUpper) : 
+        base(originalValue)
     {
         _originalValue = originalValue;
         _isUpper = isUpper;
         UpdateStringValue();
     }
 
-    public RegisterString(RegisterString anyString) : base(anyString)
+    public RegisterString(RegisterString anyString) : 
+        base(anyString)
     {
         _originalValue = anyString._originalValue;
         _isUpper = anyString._isUpper;
@@ -43,8 +45,9 @@ internal class RegisterString : StringWrapper
 
     public override string ToString()
     {
-        string s = "Изначальное значение строки - " + _originalValue + 
-            ", новое значение строки - " + _stringValue;
+        string s = $"Изначальное значение строки - " +
+            $"{_originalValue}, " +
+            $"новое значение строки - {_stringValue}";
 
         if (_isUpper)
         {
