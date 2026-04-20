@@ -1,12 +1,12 @@
-﻿internal class Money
+internal class Money
 {
-    private uint rubles;
-    private byte kopeks;
+    private uint _rubles;
+    private byte _kopeks;
 
     public Money(uint rubles, byte kopeks)
     {
-        this.rubles = rubles;
-        this.kopeks = kopeks;
+        _rubles = rubles;
+        _kopeks = kopeks;
     }
 
     public Money(int totalKopeks)
@@ -15,68 +15,68 @@
         {
             totalKopeks = 0;
         }
-        this.rubles = (uint)(totalKopeks / 100);
-        this.kopeks = (byte)(totalKopeks % 100);
+        _rubles = (uint)(totalKopeks / 100);
+        _kopeks = (byte)(totalKopeks % 100);
     }
 
     public static Money operator ++(Money m)
     {
-        Money result = new Money(m.rubles, m.kopeks);
+        Money result = new Money(m._rubles, m._kopeks);
         result = result.Add(1);
         return result;
     }
 
     public static Money operator --(Money m)
     {
-        Money result = new Money(m.rubles, m.kopeks);
+        Money result = new Money(m._rubles, m._kopeks);
         result = result.Subtract(1);
         return result;
     }
 
     public static explicit operator uint(Money m)
     {
-        return m.rubles;
+        return m._rubles;
     }
 
     public static implicit operator double(Money m)
     {
-        return m.kopeks / 100.0;
+        return m._kopeks / 100.0;
     }
 
     public static Money operator +(Money m, uint rub)
     {
-        return new Money(m.rubles + rub, m.kopeks);
+        return new Money(m._rubles + rub, m._kopeks);
     }
 
     public static Money operator -(Money m, uint rub)
     {
-        if (m.rubles < rub)
+        if (m._rubles < rub)
         {
             Console.WriteLine("Недостаточно рублей для вычитания");
-            return new Money(m.rubles, m.kopeks);
+            return new Money(m._rubles, m._kopeks);
         }
         else
         {
-            return new Money(m.rubles - rub, m.kopeks);
+            return new Money(m._rubles - rub, m._kopeks);
         }
     }
 
     public Money Add(int kop)
     {
-        int total = (int)(rubles * 100 + kopeks + kop);
+        int total = (int)(_rubles * 100 + _kopeks + kop);
         if (total < 0) total = 0;
         return new Money(total);
     }
 
     public Money Subtract(int kop)
     {
-        int total = (int)(rubles * 100 + kopeks - kop);
+        int total = (int)(_rubles * 100 + _kopeks - kop);
         if (total < 0) total = 0;
         return new Money(total);
     }
 
     public override string ToString()
     {
-        return $"{rubles} руб. {kopeks:D2} коп.";
+        return $"{_rubles} руб. {_kopeks:D2} коп.";
     }
 }
