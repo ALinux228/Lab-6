@@ -21,7 +21,7 @@ internal class StringWrapper
 
     public void Exclamation()
     {
-        _stringValue = "!!!" + _stringValue;
+        _stringValue = $"!!!{_stringValue}";
     }
 
     public override string ToString()
